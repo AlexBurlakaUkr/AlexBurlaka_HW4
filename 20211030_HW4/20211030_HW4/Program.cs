@@ -52,6 +52,37 @@ namespace HW4
                 Console.WriteLine(i);
             }
 
+            var alfabet = "abcdefghijklmnopqrstuvqxyz";
+            alfabet = alfabet.Replace("a", "A").Replace("e", "E").Replace("i", "I").Replace("d", "D").Replace("h", "H").Replace("j", "J");
+            char[] arrayalfabet = alfabet.ToCharArray();
+            char[] letterhonestarray = new char[honestarraywithoutzero.Length];
+            char[] letteroddarray = new char[oddarraywithoutzero.Length];
+            for (int i = 0; i < honestarraywithoutzero.Length; i++)
+            {
+                int cellValue = honestarraywithoutzero[i] - 1;
+                for (int letternumb = 0; letternumb < arrayalfabet.Length; letternumb++)
+                {
+                    if (letternumb == cellValue)
+                    {
+                        letterhonestarray[i] = arrayalfabet[letternumb];
+                        Console.WriteLine(letterhonestarray[i]);
+                    }
+                }
+            }
+
+            for (int i = 0; i < oddarraywithoutzero.Length; i++)
+            {
+                int cellValue = oddarraywithoutzero[i] - 1;
+                for (int letternumb = 0; letternumb < arrayalfabet.Length; letternumb++)
+                {
+                    if (letternumb == cellValue)
+                    {
+                        letteroddarray[i] = arrayalfabet[letternumb];
+                        Console.WriteLine(letteroddarray[i]);
+                    }
+                }
+            }
+
             /*foreach (var i in arrayRandom)
             {
                 Console.WriteLine(i);
