@@ -14,10 +14,10 @@ namespace HW4
         public static void Main(string[] args)
         {
             Console.WriteLine("Enter the size of array");
-            int sizearray = int.Parse(Console.ReadLine());
-            int[] arrayRandom = new int[sizearray];
-            int[] honestarray = new int[sizearray];
-            int[] oddarray = new int[sizearray];
+            int sizeArray = int.Parse(Console.ReadLine());
+            int[] arrayRandom = new int[sizeArray];
+            int[] evenArray = new int[sizeArray];
+            int[] oddArray = new int[sizeArray];
             Random rmd = new Random();
             var min = 1;
             var max = 26;
@@ -26,125 +26,144 @@ namespace HW4
                 arrayRandom[i] = rmd.Next(min, max);
             }
 
-            string a = string.Join(" ", arrayRandom);
+            int countEvenArray = 0, countOddArray = 0, countEvenArrayWithoutZero = 0, countOddArrayWithoutZero = 0;
             for (int i = 0; i < arrayRandom.Length; i++)
             {
                 if (arrayRandom[i] % 2 == 0)
                 {
-                    honestarray[i] = arrayRandom[i];
+                    countEvenArray += 1;
+                    evenArray[i] = arrayRandom[i];
                 }
                 else
                 {
-                    oddarray[i] = arrayRandom[i];
+                    countOddArray += 1;
+                    oddArray[i] = arrayRandom[i];
                 }
             }
 
-            int[] honestarraywithoutzero = Array.FindAll(honestarray, i => i > 0);
-            int[] oddarraywithoutzero = Array.FindAll(oddarray, i => i > 0);
-            var alfabet = "abcdefghijklmnopqrstuvqxyz";
-            alfabet = alfabet.Replace("a", "A").Replace("e", "E").Replace("i", "I").Replace("d", "D").Replace("h", "H").Replace("j", "J");
-            char[] arrayalfabet = alfabet.ToCharArray();
-            char[] letterhonestarray = new char[honestarraywithoutzero.Length];
-            char[] letteroddarray = new char[oddarraywithoutzero.Length];
-            for (int i = 0; i < honestarraywithoutzero.Length; i++)
+            int[] evenArrayWithoutZero = new int[countEvenArray];
+            int[] oddArrayWithoutZero = new int[countOddArray];
+            for (int i = 0; i < evenArray.Length; i++)
             {
-                int cellValue = honestarraywithoutzero[i] - 1;
-                for (int letternumb = 0; letternumb < arrayalfabet.Length; letternumb++)
+                if (evenArray[i] > 0)
                 {
-                    if (letternumb == cellValue)
+                    evenArrayWithoutZero[countEvenArrayWithoutZero] = evenArray[i];
+                    countEvenArrayWithoutZero += 1;
+                }
+            }
+
+            for (int i = 0; i < oddArray.Length; i++)
+            {
+                if (oddArray[i] > 0)
+                {
+                    oddArrayWithoutZero[countOddArrayWithoutZero] = oddArray[i];
+                    countOddArrayWithoutZero += 1;
+                }
+            }
+
+            var alphabet = "AbcDEfgHIJklmnopqrstuvqxyz";
+            char[] arrayAlphabet = alphabet.ToCharArray();
+            char[] letterEvenArray = new char[evenArrayWithoutZero.Length];
+            char[] letterOddArray = new char[oddArrayWithoutZero.Length];
+            for (int i = 0; i < evenArrayWithoutZero.Length; i++)
+            {
+                int cellValue = evenArrayWithoutZero[i] - 1;
+                for (int letterNumb = 0; letterNumb < arrayAlphabet.Length; letterNumb++)
+                {
+                    if (letterNumb == cellValue)
                     {
-                        letterhonestarray[i] = arrayalfabet[letternumb];
+                        letterEvenArray[i] = arrayAlphabet[letterNumb];
                     }
                 }
             }
 
-            for (int i = 0; i < oddarraywithoutzero.Length; i++)
+            for (int i = 0; i < oddArrayWithoutZero.Length; i++)
             {
-                int cellValue = oddarraywithoutzero[i] - 1;
-                for (int letternumb = 0; letternumb < arrayalfabet.Length; letternumb++)
+                int cellValue = oddArrayWithoutZero[i] - 1;
+                for (int letterNumb = 0; letterNumb < arrayAlphabet.Length; letterNumb++)
                 {
-                    if (letternumb == cellValue)
+                    if (letterNumb == cellValue)
                     {
-                        letteroddarray[i] = arrayalfabet[letternumb];
+                        letterOddArray[i] = arrayAlphabet[letterNumb];
                     }
                 }
             }
 
-            int count = 0;
-            for (int i = 0; i < letterhonestarray.Length; i++)
+            int countOne = 0;
+            for (int i = 0; i < letterEvenArray.Length; i++)
             {
-                char lttr = letterhonestarray[i];
+                char lttr = letterEvenArray[i];
                 switch (lttr)
                 {
                     case 'A':
-                        count += +1;
+                        countOne += 1;
                         break;
                     case 'E':
-                        count += +1;
+                        countOne += 1;
                         break;
                     case 'I':
-                        count += +1;
+                        countOne += 1;
                         break;
                     case 'D':
-                        count += +1;
+                        countOne += 1;
                         break;
                     case 'H':
-                        count += +1;
+                        countOne += 1;
                         break;
                     case 'J':
-                        count += +1;
+                        countOne += 1;
                         break;
                     default:
                         break;
                 }
             }
 
-            int counttwo = 0;
-            for (int i = 0; i < letteroddarray.Length; i++)
+            int countTwo = 0;
+            for (int i = 0; i < letterOddArray.Length; i++)
             {
-                char lttr = letteroddarray[i];
+                char lttr = letterOddArray[i];
                 switch (lttr)
                 {
                     case 'A':
-                        counttwo += +1;
+                        countTwo += 1;
                         break;
                     case 'E':
-                        counttwo += +1;
+                        countTwo += 1;
                         break;
                     case 'I':
-                        counttwo += +1;
+                        countTwo += 1;
                         break;
                     case 'D':
-                        counttwo += +1;
+                        countTwo += 1;
                         break;
                     case 'H':
-                        counttwo += +1;
+                        countTwo += 1;
                         break;
                     case 'J':
-                        counttwo += +1;
+                        countTwo += 1;
                         break;
                     default:
                         break;
                 }
             }
 
-            if (count > counttwo)
+            if (countOne > countTwo)
             {
-                Console.WriteLine("\nMore number of Uppercase in Honest array");
+                Console.WriteLine("\n More number of Uppercase in Even array");
             }
-            else if (count < counttwo)
+            else if (countOne < countTwo)
             {
-                Console.WriteLine("\nMore number of Uppercase in Odd array");
+                Console.WriteLine("\n More number of Uppercase in Odd array");
             }
             else
             {
-                Console.WriteLine("\nNumber of Uppercase the same in both arrays");
+                Console.WriteLine("\n Number of Uppercase the same in both arrays or absent at all ");
             }
 
-            string joinhonest = string.Join(" ", letterhonestarray);
-            Console.WriteLine("\nHonest array - " + joinhonest);
-            string joinodd = string.Join(" ", letteroddarray);
-            Console.WriteLine("\nOdd array - " + joinodd);
+            string joinEven = string.Join(" ", letterEvenArray);
+            Console.WriteLine("\nHonest array - " + joinEven);
+            string joinOdd = string.Join(" ", letterOddArray);
+            Console.WriteLine("\nOdd array - " + joinOdd);
         }
     }
 }
